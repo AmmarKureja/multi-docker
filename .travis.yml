@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t AmmarKureja/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ammarkureja/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run AmmarKureja/react-test npm test -- --coverage
+  - docker run ammarkureja/react-test npm test -- --coverage
 
 after_success: 
- - docker build -t AmmarKureja/multi-client ./client
- - docker build -t AmmarKureja/multi-nginx ./nginx
- - docker build -t AmmarKureja/multi-server ./server
- - docker build -t AmmarKureja/multi-worker ./worker
+ - docker build -t ammarkureja/multi-client ./client
+ - docker build -t ammarkureja/multi-nginx ./nginx
+ - docker build -t ammarkureja/multi-server ./server
+ - docker build -t ammarkureja/multi-worker ./worker
 # login to the docker CLI
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to docker hub
- - docker push AmmarKureja/multi-client
- - docker push AmmarKureja/multi-nginx
- - docker push AmmarKureja/multi-server
- - docker push AmmarKureja/multi-worker
+ - docker push ammarkureja/multi-client
+ - docker push ammarkureja/multi-nginx
+ - docker push ammarkureja/multi-server
+ - docker push ammarkureja/multi-worker
