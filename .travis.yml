@@ -20,3 +20,17 @@ after_success:
  - docker push ammarkureja/multi-nginx
  - docker push ammarkureja/multi-server
  - docker push ammarkureja/multi-worker
+
+
+deploy: 
+  provider: elasticbeanstalk
+  region: ap-southeast-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-southeast-2-017425166832
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: $AWS_SECRET_KEY
